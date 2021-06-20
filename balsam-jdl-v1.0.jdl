@@ -1,5 +1,6 @@
 
 //https://start.jhipster.tech/jdl-studio/
+
 //Entities
 entity Corporate {
 	code String required unique maxlength(5),
@@ -66,7 +67,6 @@ entity Package {
 }
 
 
-
 //Relations
 relationship OneToOne {
    Package{country} to Country,
@@ -76,6 +76,8 @@ relationship OneToOne {
    IdentificationValidationRequest{user} to User,
    IdentificationValidationRequest{createdBy} to User,
    IdentificationValidationRequest{accptedBy} to User,
+  IdentificationValidationRequest{files} to IdentificationValidationRequestFile{request}
+
 }
 
 relationship OneToMany {
@@ -127,7 +129,5 @@ enum Language {
 }
 
 enum GENDER {
-    MALE, FEMALE, OTHER
+    MALE, FEMALE
 }
-
-
