@@ -1,0 +1,14 @@
+
+User entity
+1- add canLogin bool
+2- add phoneNumber.
+3- add verifiedEmail bool.
+4- add verifiedPhoneNumber bool.
+5- add gender.
+6- add dateOfBirth Instant.
+7- add  type staff/client
+8- add corporate relation
+
+
+Person entity
+

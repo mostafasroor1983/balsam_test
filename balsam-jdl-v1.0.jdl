@@ -1,0 +1,133 @@
+
+//https://start.jhipster.tech/jdl-studio/
+//Entities
+entity Corporate {
+	code String required unique maxlength(5),
+	name String required unique maxlength(255),
+    description String maxlength(500),
+    logo ImageBlob required,
+    contactPerson String maxlength(1000),
+    employeeSize  EmployeeSize required,
+    clientSize ClientSize required,
+    email String pattern(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/),
+    website String pattern(/^(https?|ftp|file):\\/\\/[-a-zA-Z0-9+&@#\\/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#\\/%=~_|]$/)
+}
+
+entity Membership{
+	membershipId String required maxlength(20),
+    memberType MemberType,
+    active Boolean,
+    hasPhysicalVersion Boolean,
+    memberShare String,
+    corporateShare String,
+    printingDateTime Instant
+}
+
+entity IdentificationValidationRequest {
+	status IdentificationValidationRequestStatus,
+    actionDateTime Instant,
+    reason String  maxlength(2000),
+    notes  String  maxlength(5000)
+}
+
+entity IdentificationValidationRequestFile {
+	name String required maxlength(1000),
+    file ImageBlob,
+    type IdentificationValidationRequestFileType
+}
+
+entity Country {
+	name String required maxlength(20) unique,
+    code String maxlength(3) unique,
+    phoneCode String maxlength(6) unique,
+    membershipCode String maxlength(6) unique
+}
+
+entity City {
+	name String required unique,
+    code String maxlength(3) unique
+}
+
+entity Location {
+	streetAddressLine1 String maxlength(500),
+    streetAddressLine2 String maxlength(500),
+    latitude  String maxlength(20),
+    longitude  String maxlength(20)
+}
+
+entity PackageType {
+	name String required maxlength(500)
+}
+
+entity Package {
+	name String required maxlength(1000),
+    recommended Boolean,
+    tagName String maxlength(500)
+}
+
+
+
+//Relations
+relationship OneToOne {
+   Package{country} to Country,
+   Membership{package} to Package,
+   Membership{corporate} to Corporate,
+   Membership{user} to User,
+   IdentificationValidationRequest{user} to User,
+   IdentificationValidationRequest{createdBy} to User,
+   IdentificationValidationRequest{accptedBy} to User,
+}
+
+relationship OneToMany {
+	Country{cities} to City{country},
+    Country{corporates} to Corporate{country},
+    PackageType{packages} to Package{packageType},
+    Corporate{users} to User{corporate},
+    IdentificationValidationRequest{files} to IdentificationValidationRequestFile
+}
+
+//Enums
+enum MemberType{
+	SPOUSE, CHILD, PARENT
+}
+
+enum EmployeeSize{
+	LESSTHAN10("<10"), BETWEEN10AND50("10-50"), BETWEEN50AND100("50-100"),
+	BETWEEN500AND1000("500-1000"), LARGERTHANT1000(">1000")
+}
+
+enum ClientSize{
+	LESSTHAN1000("<1000"), BETWEEN1000AND5000("1000-5000"), BETWEEN5000AND10000("5000-10000"),
+	BETWEEN10000AND50000("10000-50000"),BETWEEN50000AND1000000("50000-1000000"), LARGERTHANT100000(">100000")
+}
+
+
+enum CorporateCategory{
+	EMPLOYEES, CLIENTS, BOTH
+}
+
+enum IdentificationValidationRequestStatus{
+   APPROVED, UNDER_REVIEW, REJECTED
+}
+
+enum IdentificationValidationRequestFileType{
+   PASSPORT, ID, DRIVING_LICENSE, BIRTH_CERTIFICATION
+}
+
+enum OrderStatus {
+    COMPLETED, PAID, PENDING, CANCELLED, REFUNDED
+}
+
+enum PaymentMethod {
+    CREDIT_CARD, PAYPAL , BANK_TRANSFER
+}
+
+enum Language {
+    FRENCH, ENGLISH, SPANISH
+}
+
+enum GENDER {
+    MALE, FEMALE, OTHER
+}
+
+
