@@ -74,7 +74,7 @@ relationship OneToOne {
    Membership{user} to User,
    ValidationRequest{user} to User,
    ValidationRequest{createdBy} to User,
-   ValidationRequest{acceptedBy} to User,
+   ValidationRequest{accptedBy} to User,
    ValidationRequest{files} to ValidationRequestFile{request}
 }
 
