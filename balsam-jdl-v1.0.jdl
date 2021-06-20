@@ -23,17 +23,17 @@ entity Membership{
     printingDateTime Instant
 }
 
-entity IdentificationValidationRequest {
-	status IdentificationValidationRequestStatus,
+entity ValidationRequest {
+	status ValidationRequestStatus,
     actionDateTime Instant,
     reason String  maxlength(2000),
     notes  String  maxlength(5000)
 }
 
-entity IdentificationValidationRequestFile {
+entity ValidationRequestFile {
 	name String required maxlength(1000),
     file ImageBlob,
-    type IdentificationValidationRequestFileType
+    type ValidationRequestFileType
 }
 
 entity Country {
@@ -55,11 +55,11 @@ entity Location {
     longitude  String maxlength(20)
 }
 
-entity PackageType {
+entity ServicePackageType {
 	name String required maxlength(500)
 }
 
-entity Package {
+entity ServicePackage {
 	name String required maxlength(1000),
     recommended Boolean,
     tagName String maxlength(500)
@@ -68,22 +68,22 @@ entity Package {
 
 //Relations
 relationship OneToOne {
-   Package{country} to Country,
-   Membership{package} to Package,
+   ServicePackage{country} to Country,
+   Membership{package} to ServicePackage,
    Membership{corporate} to Corporate,
    Membership{user} to User,
-   IdentificationValidationRequest{user} to User,
-   IdentificationValidationRequest{createdBy} to User,
-   IdentificationValidationRequest{accptedBy} to User,
-   IdentificationValidationRequest{files} to IdentificationValidationRequestFile{request}
+   ValidationRequest{user} to User,
+   ValidationRequest{createdBy} to User,
+   ValidationRequest{accptedBy} to User,
+   ValidationRequest{files} to ValidationRequestFile{request}
 }
 
 relationship OneToMany {
 	Country{cities} to City{country},
     Country{corporates} to Corporate{country},
-    PackageType{packages} to Package{packageType},
+    ServicePackage{packages} to ServicePackage{packageType},
     Corporate{users} to User{corporate},
-    IdentificationValidationRequest{files} to IdentificationValidationRequestFile
+    ValidationRequest{files} to ValidationRequestFile
 }
 
 //Enums
@@ -106,11 +106,11 @@ enum CorporateCategory{
 	EMPLOYEES, CLIENTS, BOTH
 }
 
-enum IdentificationValidationRequestStatus{
+enum ValidationRequestStatus{
    APPROVED, UNDER_REVIEW, REJECTED
 }
 
-enum IdentificationValidationRequestFileType{
+enum ValidationRequestFileType{
    PASSPORT, ID, DRIVING_LICENSE, BIRTH_CERTIFICATION
 }
 
@@ -131,11 +131,6 @@ enum GENDER {
 }
 
 //Options
-//service Country, City, PackageType, Package, Corporate, Membership, IdentificationValidationRequest, IdentificationValidationRequestFile with serviceImpl
-//dto Country, City, PackageType, Package, Corporate, Membership, IdentificationValidationRequest, IdentificationValidationRequestFile with mapstruct
-//paginate  Country, City, PackageType, Package, Corporate, Membership, IdentificationValidationRequest, IdentificationValidationRequestFile with pagination
-//use mapstruct, serviceImpl, pagination for all
-
 dto * with mapstruct
 service * with serviceImpl
 paginate * with pagination
