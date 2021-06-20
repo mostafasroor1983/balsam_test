@@ -82,7 +82,6 @@ relationship OneToMany {
 	Country{cities} to City{country},
     Country{corporates} to Corporate{country},
     ServicePackage{packages} to ServicePackage{packageType},
-    Corporate{users} to User,
     ValidationRequest{files} to ValidationRequestFile
 }
 
