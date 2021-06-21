@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="membership">
+      <h2 data-cy="membershipDetailsHeading"><span jhiTranslate="balsamTestApp.membership.detail.title">Membership</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ membership.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.membership.membershipId">Membership Id</span></dt>
+        <dd>
+          <span>{{ membership.membershipId }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.membership.memberType">Member Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'balsamTestApp.MemberType.' + membership.memberType }}">{{ membership.memberType }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.membership.active">Active</span></dt>
+        <dd>
+          <span>{{ membership.active }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.membership.hasPhysicalVersion">Has Physical Version</span></dt>
+        <dd>
+          <span>{{ membership.hasPhysicalVersion }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.membership.memberShare">Member Share</span></dt>
+        <dd>
+          <span>{{ membership.memberShare }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.membership.corporateShare">Corporate Share</span></dt>
+        <dd>
+          <span>{{ membership.corporateShare }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.membership.printingDateTime">Printing Date Time</span></dt>
+        <dd>
+          <span>{{ membership.printingDateTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.membership.servicePackage">Service Package</span></dt>
+        <dd>
+          <div *ngIf="membership.servicePackage">
+            <a [routerLink]="['/service-package', membership.servicePackage?.id, 'view']">{{ membership.servicePackage?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.membership.corporate">Corporate</span></dt>
+        <dd>
+          <div *ngIf="membership.corporate">
+            <a [routerLink]="['/corporate', membership.corporate?.id, 'view']">{{ membership.corporate?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.membership.user">User</span></dt>
+        <dd>
+          <span>{{ membership.user?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/membership', membership.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

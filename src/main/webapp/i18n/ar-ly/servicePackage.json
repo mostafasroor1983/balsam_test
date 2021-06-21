@@ -1,0 +1,28 @@
+{
+  "balsamTestApp": {
+    "servicePackage": {
+      "home": {
+        "title": "Service Packages",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Service Package",
+        "createOrEditLabel": "Create or edit a Service Package",
+        "notFound": "No Service Packages found"
+      },
+      "created": "A new Service Package is created with identifier {{ param }}",
+      "updated": "A Service Package is updated with identifier {{ param }}",
+      "deleted": "A Service Package is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Service Package {{ id }}?"
+      },
+      "detail": {
+        "title": "Service Package"
+      },
+      "id": "ID",
+      "name": "Name",
+      "recommended": "Recommended",
+      "tagName": "Tag Name",
+      "country": "Country",
+      "packageType": "Package Type"
+    }
+  }
+}

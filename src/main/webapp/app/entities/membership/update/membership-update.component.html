@@ -1,0 +1,194 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-membership-heading"
+        data-cy="MembershipCreateUpdateHeading"
+        jhiTranslate="balsamTestApp.membership.home.createOrEditLabel"
+      >
+        Create or edit a Membership
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.membership.membershipId" for="field_membershipId"
+            >Membership Id</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="membershipId"
+            id="field_membershipId"
+            data-cy="membershipId"
+            formControlName="membershipId"
+          />
+          <div
+            *ngIf="editForm.get('membershipId')!.invalid && (editForm.get('membershipId')!.dirty || editForm.get('membershipId')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('membershipId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('membershipId')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 20 }"
+            >
+              This field cannot be longer than 20 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.membership.memberType" for="field_memberType">Member Type</label>
+          <select class="form-control" name="memberType" formControlName="memberType" id="field_memberType" data-cy="memberType">
+            <option [ngValue]="null">{{ 'balsamTestApp.MemberType.null' | translate }}</option>
+            <option value="SPOUSE">{{ 'balsamTestApp.MemberType.SPOUSE' | translate }}</option>
+            <option value="CHILD">{{ 'balsamTestApp.MemberType.CHILD' | translate }}</option>
+            <option value="PARENT">{{ 'balsamTestApp.MemberType.PARENT' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.membership.active" for="field_active">Active</label>
+          <input type="checkbox" class="form-check" name="active" id="field_active" data-cy="active" formControlName="active" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.membership.hasPhysicalVersion" for="field_hasPhysicalVersion"
+            >Has Physical Version</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hasPhysicalVersion"
+            id="field_hasPhysicalVersion"
+            data-cy="hasPhysicalVersion"
+            formControlName="hasPhysicalVersion"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.membership.memberShare" for="field_memberShare">Member Share</label>
+          <input
+            type="text"
+            class="form-control"
+            name="memberShare"
+            id="field_memberShare"
+            data-cy="memberShare"
+            formControlName="memberShare"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.membership.corporateShare" for="field_corporateShare"
+            >Corporate Share</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="corporateShare"
+            id="field_corporateShare"
+            data-cy="corporateShare"
+            formControlName="corporateShare"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.membership.printingDateTime" for="field_printingDateTime"
+            >Printing Date Time</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_printingDateTime"
+              data-cy="printingDateTime"
+              type="datetime-local"
+              class="form-control"
+              name="printingDateTime"
+              formControlName="printingDateTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.membership.servicePackage" for="field_servicePackage"
+            >Service Package</label
+          >
+          <select
+            class="form-control"
+            id="field_servicePackage"
+            data-cy="servicePackage"
+            name="servicePackage"
+            formControlName="servicePackage"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                servicePackageOption.id === editForm.get('servicePackage')!.value?.id
+                  ? editForm.get('servicePackage')!.value
+                  : servicePackageOption
+              "
+              *ngFor="let servicePackageOption of servicePackagesCollection; trackBy: trackServicePackageById"
+            >
+              {{ servicePackageOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.membership.corporate" for="field_corporate">Corporate</label>
+          <select class="form-control" id="field_corporate" data-cy="corporate" name="corporate" formControlName="corporate">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="corporateOption.id === editForm.get('corporate')!.value?.id ? editForm.get('corporate')!.value : corporateOption"
+              *ngFor="let corporateOption of corporatesCollection; trackBy: trackCorporateById"
+            >
+              {{ corporateOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.membership.user" for="field_user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
+              *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
+            >
+              {{ userOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

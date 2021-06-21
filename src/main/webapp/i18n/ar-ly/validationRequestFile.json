@@ -1,0 +1,27 @@
+{
+  "balsamTestApp": {
+    "validationRequestFile": {
+      "home": {
+        "title": "Validation Request Files",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Validation Request File",
+        "createOrEditLabel": "Create or edit a Validation Request File",
+        "notFound": "No Validation Request Files found"
+      },
+      "created": "A new Validation Request File is created with identifier {{ param }}",
+      "updated": "A Validation Request File is updated with identifier {{ param }}",
+      "deleted": "A Validation Request File is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Validation Request File {{ id }}?"
+      },
+      "detail": {
+        "title": "Validation Request File"
+      },
+      "id": "ID",
+      "name": "Name",
+      "file": "File",
+      "type": "Type",
+      "validationRequest": "Validation Request"
+    }
+  }
+}

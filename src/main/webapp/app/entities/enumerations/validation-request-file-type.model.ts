@@ -1,0 +1,9 @@
+export enum ValidationRequestFileType {
+  PASSPORT = 'PASSPORT',
+
+  ID = 'ID',
+
+  DRIVING_LICENSE = 'DRIVING_LICENSE',
+
+  BIRTH_CERTIFICATION = 'BIRTH_CERTIFICATION',
+}

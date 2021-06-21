@@ -1,0 +1,33 @@
+{
+  "balsamTestApp": {
+    "corporate": {
+      "home": {
+        "title": "Corporates",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Corporate",
+        "createOrEditLabel": "Create or edit a Corporate",
+        "notFound": "No Corporates found"
+      },
+      "created": "A new Corporate is created with identifier {{ param }}",
+      "updated": "A Corporate is updated with identifier {{ param }}",
+      "deleted": "A Corporate is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Corporate {{ id }}?"
+      },
+      "detail": {
+        "title": "Corporate"
+      },
+      "id": "ID",
+      "code": "Code",
+      "name": "Name",
+      "description": "Description",
+      "logo": "Logo",
+      "contactPerson": "Contact Person",
+      "employeeSize": "Employee Size",
+      "clientSize": "Client Size",
+      "email": "Email",
+      "website": "Website",
+      "country": "Country"
+    }
+  }
+}

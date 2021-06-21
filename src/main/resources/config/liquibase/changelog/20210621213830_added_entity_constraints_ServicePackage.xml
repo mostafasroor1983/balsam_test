@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity ServicePackage.
+    -->
+    <changeSet id="20210621213830-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="country_id"
+                                 baseTableName="service_package"
+                                 constraintName="fk_service_package__country_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="country"/>
+
+        <addForeignKeyConstraint baseColumnNames="package_type_id"
+                                 baseTableName="service_package"
+                                 constraintName="fk_service_package__package_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="service_package_type"/>
+    </changeSet>
+</databaseChangeLog>

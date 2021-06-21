@@ -95,6 +95,7 @@
   },
   "defaultProject": "balsam-test",
   "cli": {
+    "analytics": "952d53dc-b368-4a44-8611-4ad2db146d94",
     "packageManager": "npm"
   }
 }

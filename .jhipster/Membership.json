@@ -1,0 +1,69 @@
+{
+  "name": "Membership",
+  "fields": [
+    {
+      "fieldName": "membershipId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "memberType",
+      "fieldType": "MemberType",
+      "fieldValues": "SPOUSE,CHILD,PARENT"
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasPhysicalVersion",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "memberShare",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "corporateShare",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "printingDateTime",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "servicePackage",
+      "otherEntityRelationshipName": "membership",
+      "relationshipName": "servicePackage",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "corporate",
+      "otherEntityRelationshipName": "membership",
+      "relationshipName": "corporate",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "membership",
+      "relationshipName": "user",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "membership",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210621213547"
+}

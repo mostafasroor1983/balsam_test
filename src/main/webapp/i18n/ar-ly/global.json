@@ -7,6 +7,15 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "الكيانات",
+        "corporate": "Corporate",
+        "membership": "Membership",
+        "validationRequest": "Validation Request",
+        "validationRequestFile": "Validation Request File",
+        "country": "Country",
+        "city": "City",
+        "location": "Location",
+        "servicePackageType": "Service Package Type",
+        "servicePackage": "Service Package",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

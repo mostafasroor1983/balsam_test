@@ -1,0 +1,65 @@
+{
+  "name": "ValidationRequest",
+  "fields": [
+    {
+      "fieldName": "status",
+      "fieldType": "ValidationRequestStatus",
+      "fieldValues": "APPROVED,UNDER_REVIEW,REJECTED"
+    },
+    {
+      "fieldName": "actionDateTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2000"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "5000"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "validationRequest",
+      "relationshipName": "user",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "validationRequest",
+      "relationshipName": "createdBy",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "validationRequest",
+      "relationshipName": "acceptedBy",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "validationRequestFile",
+      "otherEntityRelationshipName": "validationRequest",
+      "relationshipName": "files"
+    }
+  ],
+  "entityTableName": "validation_request",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210621213824"
+}

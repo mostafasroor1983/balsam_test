@@ -1,6 +1,14 @@
 
-//https://start.jhipster.tech/jdl-studio/
-//Entities
+enum EmployeeSize{
+	LESSTHAN10("<10"), BETWEEN10AND50("10-50"), BETWEEN50AND100("50-100"),
+	BETWEEN500AND1000("500-1000"), LARGERTHANT1000(">1000")
+}
+
+enum ClientSize{
+	LESSTHAN1000("<1000"), BETWEEN1000AND5000("1000-5000"), BETWEEN5000AND10000("5000-10000"),
+	BETWEEN10000AND50000("10000-50000"),BETWEEN50000AND1000000("50000-1000000"), LARGERTHANT100000(">100000")
+}
+
 entity Corporate {
 	code String required unique maxlength(5),
 	name String required unique maxlength(255),
@@ -13,6 +21,10 @@ entity Corporate {
     website String pattern(/^(https?|ftp|file):\\/\\/[-a-zA-Z0-9+&@#\\/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#\\/%=~_|]$/)
 }
 
+enum MemberType{
+	SPOUSE, CHILD, PARENT
+}
+
 entity Membership{
 	membershipId String required maxlength(20),
     memberType MemberType,
@@ -22,6 +34,31 @@ entity Membership{
     corporateShare String,
     printingDateTime Instant
 }
+
+enum ValidationRequestStatus{
+   APPROVED, UNDER_REVIEW, REJECTED
+}
+
+enum ValidationRequestFileType{
+   PASSPORT, ID, DRIVING_LICENSE, BIRTH_CERTIFICATION
+}
+
+enum OrderStatus {
+    COMPLETED, PAID, PENDING, CANCELLED, REFUNDED
+}
+
+enum PaymentMethod {
+    CREDIT_CARD, PAYPAL , BANK_TRANSFER
+}
+
+enum Language {
+    FRENCH, ENGLISH, SPANISH
+}
+
+enum GENDER {
+    MALE, FEMALE
+}
+
 
 entity ValidationRequest {
 	status ValidationRequestStatus,
@@ -69,64 +106,19 @@ entity ServicePackage {
 //Relations
 relationship OneToOne {
    ServicePackage{country} to Country,
-   Membership{package} to ServicePackage,
+   Membership{servicePackage} to ServicePackage,
    Membership{corporate} to Corporate,
    Membership{user} to User,
    ValidationRequest{user} to User,
    ValidationRequest{createdBy} to User,
-   ValidationRequest{accptedBy} to User,
-   ValidationRequest{files} to ValidationRequestFile{request}
+   ValidationRequest{acceptedBy} to User
 }
 
 relationship OneToMany {
 	Country{cities} to City{country},
     Country{corporates} to Corporate{country},
-    ServicePackage{packages} to ServicePackage{packageType},
+    ServicePackageType{packages} to ServicePackage{packageType},
     ValidationRequest{files} to ValidationRequestFile
-}
-
-//Enums
-enum MemberType{
-	SPOUSE, CHILD, PARENT
-}
-
-enum EmployeeSize{
-	LESSTHAN10("<10"), BETWEEN10AND50("10-50"), BETWEEN50AND100("50-100"),
-	BETWEEN500AND1000("500-1000"), LARGERTHANT1000(">1000")
-}
-
-enum ClientSize{
-	LESSTHAN1000("<1000"), BETWEEN1000AND5000("1000-5000"), BETWEEN5000AND10000("5000-10000"),
-	BETWEEN10000AND50000("10000-50000"),BETWEEN50000AND1000000("50000-1000000"), LARGERTHANT100000(">100000")
-}
-
-
-enum CorporateCategory{
-	EMPLOYEES, CLIENTS, BOTH
-}
-
-enum ValidationRequestStatus{
-   APPROVED, UNDER_REVIEW, REJECTED
-}
-
-enum ValidationRequestFileType{
-   PASSPORT, ID, DRIVING_LICENSE, BIRTH_CERTIFICATION
-}
-
-enum OrderStatus {
-    COMPLETED, PAID, PENDING, CANCELLED, REFUNDED
-}
-
-enum PaymentMethod {
-    CREDIT_CARD, PAYPAL , BANK_TRANSFER
-}
-
-enum Language {
-    FRENCH, ENGLISH, SPANISH
-}
-
-enum GENDER {
-    MALE, FEMALE
 }
 
 //Options

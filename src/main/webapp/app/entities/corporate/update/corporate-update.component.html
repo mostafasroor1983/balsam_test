@@ -1,0 +1,247 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-corporate-heading" data-cy="CorporateCreateUpdateHeading" jhiTranslate="balsamTestApp.corporate.home.createOrEditLabel">
+        Create or edit a Corporate
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.corporate.code" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+          <div *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('code')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('code')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 5 }"
+            >
+              This field cannot be longer than 5 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.corporate.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('name')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 255 }"
+            >
+              This field cannot be longer than 255 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.corporate.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+          <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('description')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 500 }"
+            >
+              This field cannot be longer than 500 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.corporate.logo" for="field_logo">Logo</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('logoContentType')!.value + ';base64,' + editForm.get('logo')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('logo')!.value"
+              alt="corporate image"
+            />
+            <div *ngIf="editForm.get('logo')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left">{{ editForm.get('logoContentType')!.value }}, {{ byteSize(editForm.get('logo')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('logo', 'logoContentType', 'file_logo')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_logo"
+              data-cy="logo"
+              (change)="setFileData($event, 'logo', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="logo" id="field_logo" data-cy="logo" formControlName="logo" />
+          <input type="hidden" class="form-control" name="logoContentType" id="field_logoContentType" formControlName="logoContentType" />
+          <div *ngIf="editForm.get('logo')!.invalid && (editForm.get('logo')!.dirty || editForm.get('logo')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('logo')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.corporate.contactPerson" for="field_contactPerson"
+            >Contact Person</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contactPerson"
+            id="field_contactPerson"
+            data-cy="contactPerson"
+            formControlName="contactPerson"
+          />
+          <div
+            *ngIf="
+              editForm.get('contactPerson')!.invalid && (editForm.get('contactPerson')!.dirty || editForm.get('contactPerson')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('contactPerson')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 1000 }"
+            >
+              This field cannot be longer than 1000 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.corporate.employeeSize" for="field_employeeSize"
+            >Employee Size</label
+          >
+          <select class="form-control" name="employeeSize" formControlName="employeeSize" id="field_employeeSize" data-cy="employeeSize">
+            <option [ngValue]="null">{{ 'balsamTestApp.EmployeeSize.null' | translate }}</option>
+            <option value="LESSTHAN10">{{ 'balsamTestApp.EmployeeSize.LESSTHAN10' | translate }}</option>
+            <option value="BETWEEN10AND50">{{ 'balsamTestApp.EmployeeSize.BETWEEN10AND50' | translate }}</option>
+            <option value="BETWEEN50AND100">{{ 'balsamTestApp.EmployeeSize.BETWEEN50AND100' | translate }}</option>
+            <option value="BETWEEN500AND1000">{{ 'balsamTestApp.EmployeeSize.BETWEEN500AND1000' | translate }}</option>
+            <option value="LARGERTHANT1000">{{ 'balsamTestApp.EmployeeSize.LARGERTHANT1000' | translate }}</option>
+          </select>
+          <div
+            *ngIf="editForm.get('employeeSize')!.invalid && (editForm.get('employeeSize')!.dirty || editForm.get('employeeSize')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('employeeSize')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.corporate.clientSize" for="field_clientSize">Client Size</label>
+          <select class="form-control" name="clientSize" formControlName="clientSize" id="field_clientSize" data-cy="clientSize">
+            <option [ngValue]="null">{{ 'balsamTestApp.ClientSize.null' | translate }}</option>
+            <option value="LESSTHAN1000">{{ 'balsamTestApp.ClientSize.LESSTHAN1000' | translate }}</option>
+            <option value="BETWEEN1000AND5000">{{ 'balsamTestApp.ClientSize.BETWEEN1000AND5000' | translate }}</option>
+            <option value="BETWEEN5000AND10000">{{ 'balsamTestApp.ClientSize.BETWEEN5000AND10000' | translate }}</option>
+            <option value="BETWEEN10000AND50000">{{ 'balsamTestApp.ClientSize.BETWEEN10000AND50000' | translate }}</option>
+            <option value="BETWEEN50000AND1000000">{{ 'balsamTestApp.ClientSize.BETWEEN50000AND1000000' | translate }}</option>
+            <option value="LARGERTHANT100000">{{ 'balsamTestApp.ClientSize.LARGERTHANT100000' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('clientSize')!.invalid && (editForm.get('clientSize')!.dirty || editForm.get('clientSize')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('clientSize')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.corporate.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('email')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Email' }"
+            >
+              This field should follow pattern for "Email".
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.corporate.website" for="field_website">Website</label>
+          <input type="text" class="form-control" name="website" id="field_website" data-cy="website" formControlName="website" />
+          <div *ngIf="editForm.get('website')!.invalid && (editForm.get('website')!.dirty || editForm.get('website')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('website')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Website' }"
+            >
+              This field should follow pattern for "Website".
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="balsamTestApp.corporate.country" for="field_country">Country</label>
+          <select class="form-control" id="field_country" data-cy="country" name="country" formControlName="country">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="countryOption.id === editForm.get('country')!.value?.id ? editForm.get('country')!.value : countryOption"
+              *ngFor="let countryOption of countriesSharedCollection; trackBy: trackCountryById"
+            >
+              {{ countryOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

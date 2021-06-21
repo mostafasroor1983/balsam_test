@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="servicePackage">
+      <h2 data-cy="servicePackageDetailsHeading"><span jhiTranslate="balsamTestApp.servicePackage.detail.title">Service Package</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ servicePackage.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.servicePackage.name">Name</span></dt>
+        <dd>
+          <span>{{ servicePackage.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.servicePackage.recommended">Recommended</span></dt>
+        <dd>
+          <span>{{ servicePackage.recommended }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.servicePackage.tagName">Tag Name</span></dt>
+        <dd>
+          <span>{{ servicePackage.tagName }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.servicePackage.country">Country</span></dt>
+        <dd>
+          <div *ngIf="servicePackage.country">
+            <a [routerLink]="['/country', servicePackage.country?.id, 'view']">{{ servicePackage.country?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.servicePackage.packageType">Package Type</span></dt>
+        <dd>
+          <div *ngIf="servicePackage.packageType">
+            <a [routerLink]="['/service-package-type', servicePackage.packageType?.id, 'view']">{{ servicePackage.packageType?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/service-package', servicePackage.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

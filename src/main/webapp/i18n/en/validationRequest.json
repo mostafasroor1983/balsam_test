@@ -1,0 +1,31 @@
+{
+  "balsamTestApp": {
+    "validationRequest": {
+      "home": {
+        "title": "Validation Requests",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Validation Request",
+        "createOrEditLabel": "Create or edit a Validation Request",
+        "notFound": "No Validation Requests found"
+      },
+      "created": "A new Validation Request is created with identifier {{ param }}",
+      "updated": "A Validation Request is updated with identifier {{ param }}",
+      "deleted": "A Validation Request is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Validation Request {{ id }}?"
+      },
+      "detail": {
+        "title": "Validation Request"
+      },
+      "id": "ID",
+      "status": "Status",
+      "actionDateTime": "Action Date Time",
+      "reason": "Reason",
+      "notes": "Notes",
+      "user": "User",
+      "createdBy": "Created By",
+      "acceptedBy": "Accepted By",
+      "files": "Files"
+    }
+  }
+}

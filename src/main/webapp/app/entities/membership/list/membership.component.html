@@ -1,0 +1,144 @@
+<div>
+  <h2 id="page-heading" data-cy="MembershipHeading">
+    <span jhiTranslate="balsamTestApp.membership.home.title">Memberships</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="balsamTestApp.membership.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-membership"
+        [routerLink]="['/membership/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="balsamTestApp.membership.home.createLabel"> Create a new Membership </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="memberships?.length === 0">
+    <span jhiTranslate="balsamTestApp.membership.home.notFound">No memberships found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="memberships && memberships.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="membershipId">
+            <span jhiTranslate="balsamTestApp.membership.membershipId">Membership Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="memberType">
+            <span jhiTranslate="balsamTestApp.membership.memberType">Member Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="active">
+            <span jhiTranslate="balsamTestApp.membership.active">Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="hasPhysicalVersion">
+            <span jhiTranslate="balsamTestApp.membership.hasPhysicalVersion">Has Physical Version</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="memberShare">
+            <span jhiTranslate="balsamTestApp.membership.memberShare">Member Share</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="corporateShare">
+            <span jhiTranslate="balsamTestApp.membership.corporateShare">Corporate Share</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="printingDateTime">
+            <span jhiTranslate="balsamTestApp.membership.printingDateTime">Printing Date Time</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="servicePackage.id">
+            <span jhiTranslate="balsamTestApp.membership.servicePackage">Service Package</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="corporate.id">
+            <span jhiTranslate="balsamTestApp.membership.corporate">Corporate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="user.id">
+            <span jhiTranslate="balsamTestApp.membership.user">User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let membership of memberships; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/membership', membership.id, 'view']">{{ membership.id }}</a>
+          </td>
+          <td>{{ membership.membershipId }}</td>
+          <td jhiTranslate="{{ 'balsamTestApp.MemberType.' + membership.memberType }}">{{ membership.memberType }}</td>
+          <td>{{ membership.active }}</td>
+          <td>{{ membership.hasPhysicalVersion }}</td>
+          <td>{{ membership.memberShare }}</td>
+          <td>{{ membership.corporateShare }}</td>
+          <td>{{ membership.printingDateTime | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="membership.servicePackage">
+              <a [routerLink]="['/service-package', membership.servicePackage?.id, 'view']">{{ membership.servicePackage?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="membership.corporate">
+              <a [routerLink]="['/corporate', membership.corporate?.id, 'view']">{{ membership.corporate?.id }}</a>
+            </div>
+          </td>
+          <td>
+            {{ membership.user?.id }}
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/membership', membership.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/membership', membership.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(membership)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="memberships && memberships.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

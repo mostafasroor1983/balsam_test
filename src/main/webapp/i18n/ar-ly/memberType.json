@@ -1,0 +1,10 @@
+{
+  "balsamTestApp": {
+    "MemberType": {
+      "null": "",
+      "SPOUSE": "SPOUSE",
+      "CHILD": "CHILD",
+      "PARENT": "PARENT"
+    }
+  }
+}

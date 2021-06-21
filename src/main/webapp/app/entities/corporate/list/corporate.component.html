@@ -1,0 +1,147 @@
+<div>
+  <h2 id="page-heading" data-cy="CorporateHeading">
+    <span jhiTranslate="balsamTestApp.corporate.home.title">Corporates</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="balsamTestApp.corporate.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-corporate"
+        [routerLink]="['/corporate/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="balsamTestApp.corporate.home.createLabel"> Create a new Corporate </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="corporates?.length === 0">
+    <span jhiTranslate="balsamTestApp.corporate.home.notFound">No corporates found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="corporates && corporates.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="code">
+            <span jhiTranslate="balsamTestApp.corporate.code">Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <span jhiTranslate="balsamTestApp.corporate.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="balsamTestApp.corporate.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="logo">
+            <span jhiTranslate="balsamTestApp.corporate.logo">Logo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="contactPerson">
+            <span jhiTranslate="balsamTestApp.corporate.contactPerson">Contact Person</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="employeeSize">
+            <span jhiTranslate="balsamTestApp.corporate.employeeSize">Employee Size</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="clientSize">
+            <span jhiTranslate="balsamTestApp.corporate.clientSize">Client Size</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <span jhiTranslate="balsamTestApp.corporate.email">Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="website">
+            <span jhiTranslate="balsamTestApp.corporate.website">Website</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="country.id">
+            <span jhiTranslate="balsamTestApp.corporate.country">Country</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let corporate of corporates; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/corporate', corporate.id, 'view']">{{ corporate.id }}</a>
+          </td>
+          <td>{{ corporate.code }}</td>
+          <td>{{ corporate.name }}</td>
+          <td>{{ corporate.description }}</td>
+          <td>
+            <a *ngIf="corporate.logo" (click)="openFile(corporate.logo, corporate.logoContentType)">
+              <img
+                [src]="'data:' + corporate.logoContentType + ';base64,' + corporate.logo"
+                style="max-height: 30px"
+                alt="corporate image"
+              />
+            </a>
+            <span *ngIf="corporate.logo">{{ corporate.logoContentType }}, {{ byteSize(corporate.logo) }}</span>
+          </td>
+          <td>{{ corporate.contactPerson }}</td>
+          <td jhiTranslate="{{ 'balsamTestApp.EmployeeSize.' + corporate.employeeSize }}">{{ corporate.employeeSize }}</td>
+          <td jhiTranslate="{{ 'balsamTestApp.ClientSize.' + corporate.clientSize }}">{{ corporate.clientSize }}</td>
+          <td>{{ corporate.email }}</td>
+          <td>{{ corporate.website }}</td>
+          <td>
+            <div *ngIf="corporate.country">
+              <a [routerLink]="['/country', corporate.country?.id, 'view']">{{ corporate.country?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/corporate', corporate.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/corporate', corporate.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(corporate)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="corporates && corporates.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

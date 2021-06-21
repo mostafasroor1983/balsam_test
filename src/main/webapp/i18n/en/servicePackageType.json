@@ -1,0 +1,25 @@
+{
+  "balsamTestApp": {
+    "servicePackageType": {
+      "home": {
+        "title": "Service Package Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Service Package Type",
+        "createOrEditLabel": "Create or edit a Service Package Type",
+        "notFound": "No Service Package Types found"
+      },
+      "created": "A new Service Package Type is created with identifier {{ param }}",
+      "updated": "A Service Package Type is updated with identifier {{ param }}",
+      "deleted": "A Service Package Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Service Package Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Service Package Type"
+      },
+      "id": "ID",
+      "name": "Name",
+      "packages": "Packages"
+    }
+  }
+}

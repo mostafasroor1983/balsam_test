@@ -41,6 +41,18 @@
     "packageFolder": "com/balsam/test1",
     "jwtSecretKey": "NmI1ZTc2Yjg4YjRlYjZkNzIzOTU5ZTkxMDVmM2YxOTY5YmIwMjYxMjYwZmQyYjgyZDllYzBhZjk2YjcyMDM5NzI3YjBmZmY2MjZjMzM0MmRkN2ZkNGQ0ZjA1MDEzNTM3NTFhZjBiOTNmYjBmNDI4M2RkNTVjM2QwODQyN2Q1YmI=",
     "clientPackageManager": "npm",
-    "languages": ["en", "ar-ly"]
+    "languages": ["en", "ar-ly"],
+    "entities": [
+      "Corporate",
+      "Membership",
+      "ValidationRequest",
+      "ValidationRequestFile",
+      "Country",
+      "City",
+      "Location",
+      "ServicePackageType",
+      "ServicePackage"
+    ],
+    "lastLiquibaseTimestamp": 1624311510000
   }
 }

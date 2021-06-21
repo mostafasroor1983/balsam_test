@@ -1,0 +1,39 @@
+{
+  "name": "ValidationRequestFile",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "1000"
+    },
+    {
+      "fieldName": "file",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "ValidationRequestFileType",
+      "fieldValues": "PASSPORT,ID,DRIVING_LICENSE,BIRTH_CERTIFICATION"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "validationRequest",
+      "otherEntityRelationshipName": "files",
+      "relationshipName": "validationRequest"
+    }
+  ],
+  "entityTableName": "validation_request_file",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210621213825"
+}

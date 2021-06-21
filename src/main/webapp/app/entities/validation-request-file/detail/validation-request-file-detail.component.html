@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="validationRequestFile">
+      <h2 data-cy="validationRequestFileDetailsHeading">
+        <span jhiTranslate="balsamTestApp.validationRequestFile.detail.title">Validation Request File</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ validationRequestFile.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.validationRequestFile.name">Name</span></dt>
+        <dd>
+          <span>{{ validationRequestFile.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.validationRequestFile.file">File</span></dt>
+        <dd>
+          <div *ngIf="validationRequestFile.file">
+            <a (click)="openFile(validationRequestFile.file, validationRequestFile.fileContentType)">
+              <img
+                [src]="'data:' + validationRequestFile.fileContentType + ';base64,' + validationRequestFile.file"
+                style="max-width: 100%"
+                alt="validationRequestFile image"
+              />
+            </a>
+            {{ validationRequestFile.fileContentType }}, {{ byteSize(validationRequestFile.file) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.validationRequestFile.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'balsamTestApp.ValidationRequestFileType.' + validationRequestFile.type }}">{{
+            validationRequestFile.type
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="balsamTestApp.validationRequestFile.validationRequest">Validation Request</span></dt>
+        <dd>
+          <div *ngIf="validationRequestFile.validationRequest">
+            <a [routerLink]="['/validation-request', validationRequestFile.validationRequest?.id, 'view']">{{
+              validationRequestFile.validationRequest?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/validation-request-file', validationRequestFile.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
