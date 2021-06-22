@@ -9,8 +9,9 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface CountryMapper extends EntityMapper<CountryDTO, Country> {
-    @Named("id")
+    @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    CountryDTO toDtoId(Country country);
+    @Mapping(target = "name", source = "name")
+    CountryDTO toDtoName(Country country);
 }

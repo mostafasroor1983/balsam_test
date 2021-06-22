@@ -24,13 +24,15 @@
       "otherEntityName": "country",
       "otherEntityRelationshipName": "servicePackage",
       "relationshipName": "country",
+      "otherEntityField": "name",
       "ownerSide": true
     },
     {
       "relationshipType": "many-to-one",
       "otherEntityName": "servicePackageType",
       "otherEntityRelationshipName": "packages",
-      "relationshipName": "packageType"
+      "relationshipName": "packageType",
+      "otherEntityField": "name"
     }
   ],
   "entityTableName": "service_package",

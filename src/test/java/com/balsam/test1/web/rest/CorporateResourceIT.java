@@ -62,8 +62,8 @@ class CorporateResourceIT {
     private static final String DEFAULT_EMAIL = "@253.4.225.253";
     private static final String UPDATED_EMAIL = "9@oYBjzjS-5AgCoxM7LolhIfehK8v7U3VBu.tgviu.gr";
 
-    private static final String DEFAULT_WEBSITE = "file:\\/\\/?U";
-    private static final String UPDATED_WEBSITE = "ftp:\\/\\/e5";
+    private static final String DEFAULT_WEBSITE = "http://CmgZJzTgH2wvombgwmy";
+    private static final String UPDATED_WEBSITE = "Md2imRwdqoirw";
 
     private static final String ENTITY_API_URL = "/api/corporates";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -1086,13 +1086,7 @@ class CorporateResourceIT {
         Corporate partialUpdatedCorporate = new Corporate();
         partialUpdatedCorporate.setId(corporate.getId());
 
-        partialUpdatedCorporate
-            .name(UPDATED_NAME)
-            .logo(UPDATED_LOGO)
-            .logoContentType(UPDATED_LOGO_CONTENT_TYPE)
-            .employeeSize(UPDATED_EMPLOYEE_SIZE)
-            .clientSize(UPDATED_CLIENT_SIZE)
-            .email(UPDATED_EMAIL);
+        partialUpdatedCorporate.description(UPDATED_DESCRIPTION).contactPerson(UPDATED_CONTACT_PERSON).website(UPDATED_WEBSITE);
 
         restCorporateMockMvc
             .perform(
@@ -1107,15 +1101,15 @@ class CorporateResourceIT {
         assertThat(corporateList).hasSize(databaseSizeBeforeUpdate);
         Corporate testCorporate = corporateList.get(corporateList.size() - 1);
         assertThat(testCorporate.getCode()).isEqualTo(DEFAULT_CODE);
-        assertThat(testCorporate.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testCorporate.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testCorporate.getLogo()).isEqualTo(UPDATED_LOGO);
-        assertThat(testCorporate.getLogoContentType()).isEqualTo(UPDATED_LOGO_CONTENT_TYPE);
-        assertThat(testCorporate.getContactPerson()).isEqualTo(DEFAULT_CONTACT_PERSON);
-        assertThat(testCorporate.getEmployeeSize()).isEqualTo(UPDATED_EMPLOYEE_SIZE);
-        assertThat(testCorporate.getClientSize()).isEqualTo(UPDATED_CLIENT_SIZE);
-        assertThat(testCorporate.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testCorporate.getWebsite()).isEqualTo(DEFAULT_WEBSITE);
+        assertThat(testCorporate.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testCorporate.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testCorporate.getLogo()).isEqualTo(DEFAULT_LOGO);
+        assertThat(testCorporate.getLogoContentType()).isEqualTo(DEFAULT_LOGO_CONTENT_TYPE);
+        assertThat(testCorporate.getContactPerson()).isEqualTo(UPDATED_CONTACT_PERSON);
+        assertThat(testCorporate.getEmployeeSize()).isEqualTo(DEFAULT_EMPLOYEE_SIZE);
+        assertThat(testCorporate.getClientSize()).isEqualTo(DEFAULT_CLIENT_SIZE);
+        assertThat(testCorporate.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testCorporate.getWebsite()).isEqualTo(UPDATED_WEBSITE);
     }
 
     @Test

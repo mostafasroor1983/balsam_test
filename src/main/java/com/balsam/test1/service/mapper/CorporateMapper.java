@@ -9,11 +9,12 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { CountryMapper.class })
 public interface CorporateMapper extends EntityMapper<CorporateDTO, Corporate> {
-    @Mapping(target = "country", source = "country", qualifiedByName = "id")
+    @Mapping(target = "country", source = "country", qualifiedByName = "name")
     CorporateDTO toDto(Corporate s);
 
-    @Named("id")
+    @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    CorporateDTO toDtoId(Corporate corporate);
+    @Mapping(target = "name", source = "name")
+    CorporateDTO toDtoName(Corporate corporate);
 }

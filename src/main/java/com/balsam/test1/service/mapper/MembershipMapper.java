@@ -9,8 +9,8 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { ServicePackageMapper.class, CorporateMapper.class, UserMapper.class })
 public interface MembershipMapper extends EntityMapper<MembershipDTO, Membership> {
-    @Mapping(target = "servicePackage", source = "servicePackage", qualifiedByName = "id")
-    @Mapping(target = "corporate", source = "corporate", qualifiedByName = "id")
-    @Mapping(target = "user", source = "user", qualifiedByName = "id")
+    @Mapping(target = "servicePackage", source = "servicePackage", qualifiedByName = "name")
+    @Mapping(target = "corporate", source = "corporate", qualifiedByName = "name")
+    @Mapping(target = "user", source = "user", qualifiedByName = "login")
     MembershipDTO toDto(Membership s);
 }

@@ -60,7 +60,7 @@
           <th scope="col" jhiSortBy="website">
             <span jhiTranslate="balsamTestApp.corporate.website">Website</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="country.id">
+          <th scope="col" jhiSortBy="country.name">
             <span jhiTranslate="balsamTestApp.corporate.country">Country</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
@@ -91,7 +91,7 @@
           <td>{{ corporate.website }}</td>
           <td>
             <div *ngIf="corporate.country">
-              <a [routerLink]="['/country', corporate.country?.id, 'view']">{{ corporate.country?.id }}</a>
+              <a [routerLink]="['/country', corporate.country?.id, 'view']">{{ corporate.country?.name }}</a>
             </div>
           </td>
           <td class="text-right">

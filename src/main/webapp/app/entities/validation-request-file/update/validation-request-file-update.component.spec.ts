@@ -42,12 +42,12 @@ describe('Component Tests', () => {
     describe('ngOnInit', () => {
       it('Should call ValidationRequest query and add missing value', () => {
         const validationRequestFile: IValidationRequestFile = { id: 456 };
-        const validationRequest: IValidationRequest = { id: 88676 };
-        validationRequestFile.validationRequest = validationRequest;
+        const request: IValidationRequest = { id: 88676 };
+        validationRequestFile.request = request;
 
         const validationRequestCollection: IValidationRequest[] = [{ id: 11656 }];
         spyOn(validationRequestService, 'query').and.returnValue(of(new HttpResponse({ body: validationRequestCollection })));
-        const additionalValidationRequests = [validationRequest];
+        const additionalValidationRequests = [request];
         const expectedCollection: IValidationRequest[] = [...additionalValidationRequests, ...validationRequestCollection];
         spyOn(validationRequestService, 'addValidationRequestToCollectionIfMissing').and.returnValue(expectedCollection);
 
@@ -64,14 +64,14 @@ describe('Component Tests', () => {
 
       it('Should update editForm', () => {
         const validationRequestFile: IValidationRequestFile = { id: 456 };
-        const validationRequest: IValidationRequest = { id: 99060 };
-        validationRequestFile.validationRequest = validationRequest;
+        const request: IValidationRequest = { id: 99060 };
+        validationRequestFile.request = request;
 
         activatedRoute.data = of({ validationRequestFile });
         comp.ngOnInit();
 
         expect(comp.editForm.value).toEqual(expect.objectContaining(validationRequestFile));
-        expect(comp.validationRequestsSharedCollection).toContain(validationRequest);
+        expect(comp.validationRequestsSharedCollection).toContain(request);
       });
     });
 

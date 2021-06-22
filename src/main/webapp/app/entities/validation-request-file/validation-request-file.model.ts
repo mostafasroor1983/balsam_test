@@ -7,7 +7,7 @@ export interface IValidationRequestFile {
   fileContentType?: string | null;
   file?: string | null;
   type?: ValidationRequestFileType | null;
-  validationRequest?: IValidationRequest | null;
+  request?: IValidationRequest | null;
 }
 
 export class ValidationRequestFile implements IValidationRequestFile {
@@ -17,7 +17,7 @@ export class ValidationRequestFile implements IValidationRequestFile {
     public fileContentType?: string | null,
     public file?: string | null,
     public type?: ValidationRequestFileType | null,
-    public validationRequest?: IValidationRequest | null
+    public request?: IValidationRequest | null
   ) {}
 }
 

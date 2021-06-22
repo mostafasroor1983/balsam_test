@@ -9,6 +9,6 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { ValidationRequestMapper.class })
 public interface ValidationRequestFileMapper extends EntityMapper<ValidationRequestFileDTO, ValidationRequestFile> {
-    @Mapping(target = "validationRequest", source = "validationRequest", qualifiedByName = "id")
+    @Mapping(target = "request", source = "request", qualifiedByName = "id")
     ValidationRequestFileDTO toDto(ValidationRequestFile s);
 }

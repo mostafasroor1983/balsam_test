@@ -53,9 +53,9 @@ public class ValidationRequest implements Serializable {
     @JoinColumn(unique = true)
     private User acceptedBy;
 
-    @OneToMany(mappedBy = "validationRequest")
+    @OneToMany(mappedBy = "request")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "validationRequest" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "request" }, allowSetters = true)
     private Set<ValidationRequestFile> files = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -174,22 +174,22 @@ public class ValidationRequest implements Serializable {
 
     public ValidationRequest addFiles(ValidationRequestFile validationRequestFile) {
         this.files.add(validationRequestFile);
-        validationRequestFile.setValidationRequest(this);
+        validationRequestFile.setRequest(this);
         return this;
     }
 
     public ValidationRequest removeFiles(ValidationRequestFile validationRequestFile) {
         this.files.remove(validationRequestFile);
-        validationRequestFile.setValidationRequest(null);
+        validationRequestFile.setRequest(null);
         return this;
     }
 
     public void setFiles(Set<ValidationRequestFile> validationRequestFiles) {
         if (this.files != null) {
-            this.files.forEach(i -> i.setValidationRequest(null));
+            this.files.forEach(i -> i.setRequest(null));
         }
         if (validationRequestFiles != null) {
-            validationRequestFiles.forEach(i -> i.setValidationRequest(this));
+            validationRequestFiles.forEach(i -> i.setRequest(this));
         }
         this.files = validationRequestFiles;
     }

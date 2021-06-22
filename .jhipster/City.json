@@ -18,7 +18,8 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "country",
       "otherEntityRelationshipName": "cities",
-      "relationshipName": "country"
+      "relationshipName": "country",
+      "otherEntityField": "name"
     }
   ],
   "entityTableName": "city",

@@ -39,6 +39,7 @@
       "otherEntityName": "servicePackage",
       "otherEntityRelationshipName": "membership",
       "relationshipName": "servicePackage",
+      "otherEntityField": "name",
       "ownerSide": true
     },
     {
@@ -46,6 +47,7 @@
       "otherEntityName": "corporate",
       "otherEntityRelationshipName": "membership",
       "relationshipName": "corporate",
+      "otherEntityField": "name",
       "ownerSide": true
     },
     {
@@ -53,6 +55,7 @@
       "otherEntityName": "user",
       "otherEntityRelationshipName": "membership",
       "relationshipName": "user",
+      "otherEntityField": "login",
       "ownerSide": true
     }
   ],

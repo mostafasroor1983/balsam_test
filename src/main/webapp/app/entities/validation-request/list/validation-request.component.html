@@ -45,13 +45,13 @@
           <th scope="col" jhiSortBy="notes">
             <span jhiTranslate="balsamTestApp.validationRequest.notes">Notes</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="user.id">
+          <th scope="col" jhiSortBy="user.login">
             <span jhiTranslate="balsamTestApp.validationRequest.user">User</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="createdBy.id">
+          <th scope="col" jhiSortBy="createdBy.login">
             <span jhiTranslate="balsamTestApp.validationRequest.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="acceptedBy.id">
+          <th scope="col" jhiSortBy="acceptedBy.login">
             <span jhiTranslate="balsamTestApp.validationRequest.acceptedBy">Accepted By</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
@@ -67,13 +67,13 @@
           <td>{{ validationRequest.reason }}</td>
           <td>{{ validationRequest.notes }}</td>
           <td>
-            {{ validationRequest.user?.id }}
+            {{ validationRequest.user?.login }}
           </td>
           <td>
-            {{ validationRequest.createdBy?.id }}
+            {{ validationRequest.createdBy?.login }}
           </td>
           <td>
-            {{ validationRequest.acceptedBy?.id }}
+            {{ validationRequest.acceptedBy?.login }}
           </td>
           <td class="text-right">
             <div class="btn-group">

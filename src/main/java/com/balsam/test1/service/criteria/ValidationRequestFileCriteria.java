@@ -48,7 +48,7 @@ public class ValidationRequestFileCriteria implements Serializable, Criteria {
 
     private ValidationRequestFileTypeFilter type;
 
-    private LongFilter validationRequestId;
+    private LongFilter requestId;
 
     public ValidationRequestFileCriteria() {}
 
@@ -56,7 +56,7 @@ public class ValidationRequestFileCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.name = other.name == null ? null : other.name.copy();
         this.type = other.type == null ? null : other.type.copy();
-        this.validationRequestId = other.validationRequestId == null ? null : other.validationRequestId.copy();
+        this.requestId = other.requestId == null ? null : other.requestId.copy();
     }
 
     @Override
@@ -109,19 +109,19 @@ public class ValidationRequestFileCriteria implements Serializable, Criteria {
         this.type = type;
     }
 
-    public LongFilter getValidationRequestId() {
-        return validationRequestId;
+    public LongFilter getRequestId() {
+        return requestId;
     }
 
-    public LongFilter validationRequestId() {
-        if (validationRequestId == null) {
-            validationRequestId = new LongFilter();
+    public LongFilter requestId() {
+        if (requestId == null) {
+            requestId = new LongFilter();
         }
-        return validationRequestId;
+        return requestId;
     }
 
-    public void setValidationRequestId(LongFilter validationRequestId) {
-        this.validationRequestId = validationRequestId;
+    public void setRequestId(LongFilter requestId) {
+        this.requestId = requestId;
     }
 
     @Override
@@ -137,13 +137,13 @@ public class ValidationRequestFileCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(name, that.name) &&
             Objects.equals(type, that.type) &&
-            Objects.equals(validationRequestId, that.validationRequestId)
+            Objects.equals(requestId, that.requestId)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, type, validationRequestId);
+        return Objects.hash(id, name, type, requestId);
     }
 
     // prettier-ignore
@@ -153,7 +153,7 @@ public class ValidationRequestFileCriteria implements Serializable, Criteria {
             (id != null ? "id=" + id + ", " : "") +
             (name != null ? "name=" + name + ", " : "") +
             (type != null ? "type=" + type + ", " : "") +
-            (validationRequestId != null ? "validationRequestId=" + validationRequestId + ", " : "") +
+            (requestId != null ? "requestId=" + requestId + ", " : "") +
             "}";
     }
 }

@@ -9,8 +9,9 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface ServicePackageTypeMapper extends EntityMapper<ServicePackageTypeDTO, ServicePackageType> {
-    @Named("id")
+    @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    ServicePackageTypeDTO toDtoId(ServicePackageType servicePackageType);
+    @Mapping(target = "name", source = "name")
+    ServicePackageTypeDTO toDtoName(ServicePackageType servicePackageType);
 }

@@ -44,7 +44,7 @@ public class CorporateDTO implements Serializable {
     )
     private String email;
 
-    @Pattern(regexp = "^(https?|ftp|file):\\\\/\\\\/[-a-zA-Z0-9+&@#\\\\/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#\\\\/%=~_|]$")
+    @Pattern(regexp = "^(http:\\/\\/|https:\\/\\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$")
     private String website;
 
     private CountryDTO country;

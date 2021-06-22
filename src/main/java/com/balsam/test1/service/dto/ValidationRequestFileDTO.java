@@ -23,7 +23,7 @@ public class ValidationRequestFileDTO implements Serializable {
     private String fileContentType;
     private ValidationRequestFileType type;
 
-    private ValidationRequestDTO validationRequest;
+    private ValidationRequestDTO request;
 
     public Long getId() {
         return id;
@@ -65,12 +65,12 @@ public class ValidationRequestFileDTO implements Serializable {
         this.type = type;
     }
 
-    public ValidationRequestDTO getValidationRequest() {
-        return validationRequest;
+    public ValidationRequestDTO getRequest() {
+        return request;
     }
 
-    public void setValidationRequest(ValidationRequestDTO validationRequest) {
-        this.validationRequest = validationRequest;
+    public void setRequest(ValidationRequestDTO request) {
+        this.request = request;
     }
 
     @Override
@@ -102,7 +102,7 @@ public class ValidationRequestFileDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", file='" + getFile() + "'" +
             ", type='" + getType() + "'" +
-            ", validationRequest=" + getValidationRequest() +
+            ", request=" + getRequest() +
             "}";
     }
 }

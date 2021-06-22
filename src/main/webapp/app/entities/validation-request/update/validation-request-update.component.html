@@ -82,7 +82,7 @@
               [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
               *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
             >
-              {{ userOption.id }}
+              {{ userOption.login }}
             </option>
           </select>
         </div>
@@ -97,7 +97,7 @@
               [ngValue]="userOption.id === editForm.get('createdBy')!.value?.id ? editForm.get('createdBy')!.value : userOption"
               *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
             >
-              {{ userOption.id }}
+              {{ userOption.login }}
             </option>
           </select>
         </div>
@@ -112,7 +112,7 @@
               [ngValue]="userOption.id === editForm.get('acceptedBy')!.value?.id ? editForm.get('acceptedBy')!.value : userOption"
               *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
             >
-              {{ userOption.id }}
+              {{ userOption.login }}
             </option>
           </select>
         </div>

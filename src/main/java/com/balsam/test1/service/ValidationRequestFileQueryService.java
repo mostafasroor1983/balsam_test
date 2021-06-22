@@ -95,12 +95,12 @@ public class ValidationRequestFileQueryService extends QueryService<ValidationRe
             if (criteria.getType() != null) {
                 specification = specification.and(buildSpecification(criteria.getType(), ValidationRequestFile_.type));
             }
-            if (criteria.getValidationRequestId() != null) {
+            if (criteria.getRequestId() != null) {
                 specification =
                     specification.and(
                         buildSpecification(
-                            criteria.getValidationRequestId(),
-                            root -> root.join(ValidationRequestFile_.validationRequest, JoinType.LEFT).get(ValidationRequest_.id)
+                            criteria.getRequestId(),
+                            root -> root.join(ValidationRequestFile_.request, JoinType.LEFT).get(ValidationRequest_.id)
                         )
                     );
             }

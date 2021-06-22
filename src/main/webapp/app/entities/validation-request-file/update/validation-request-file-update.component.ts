@@ -28,7 +28,7 @@ export class ValidationRequestFileUpdateComponent implements OnInit {
     file: [],
     fileContentType: [],
     type: [],
-    validationRequest: [],
+    request: [],
   });
 
   constructor(
@@ -120,12 +120,12 @@ export class ValidationRequestFileUpdateComponent implements OnInit {
       file: validationRequestFile.file,
       fileContentType: validationRequestFile.fileContentType,
       type: validationRequestFile.type,
-      validationRequest: validationRequestFile.validationRequest,
+      request: validationRequestFile.request,
     });
 
     this.validationRequestsSharedCollection = this.validationRequestService.addValidationRequestToCollectionIfMissing(
       this.validationRequestsSharedCollection,
-      validationRequestFile.validationRequest
+      validationRequestFile.request
     );
   }
 
@@ -135,10 +135,7 @@ export class ValidationRequestFileUpdateComponent implements OnInit {
       .pipe(map((res: HttpResponse<IValidationRequest[]>) => res.body ?? []))
       .pipe(
         map((validationRequests: IValidationRequest[]) =>
-          this.validationRequestService.addValidationRequestToCollectionIfMissing(
-            validationRequests,
-            this.editForm.get('validationRequest')!.value
-          )
+          this.validationRequestService.addValidationRequestToCollectionIfMissing(validationRequests, this.editForm.get('request')!.value)
         )
       )
       .subscribe((validationRequests: IValidationRequest[]) => (this.validationRequestsSharedCollection = validationRequests));
@@ -152,7 +149,7 @@ export class ValidationRequestFileUpdateComponent implements OnInit {
       fileContentType: this.editForm.get(['fileContentType'])!.value,
       file: this.editForm.get(['file'])!.value,
       type: this.editForm.get(['type'])!.value,
-      validationRequest: this.editForm.get(['validationRequest'])!.value,
+      request: this.editForm.get(['request'])!.value,
     };
   }
 }

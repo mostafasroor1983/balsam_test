@@ -23,7 +23,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "validationRequest",
       "otherEntityRelationshipName": "files",
-      "relationshipName": "validationRequest"
+      "relationshipName": "request"
     }
   ],
   "entityTableName": "validation_request_file",

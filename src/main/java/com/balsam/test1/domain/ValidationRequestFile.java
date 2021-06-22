@@ -41,7 +41,7 @@ public class ValidationRequestFile implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "user", "createdBy", "acceptedBy", "files" }, allowSetters = true)
-    private ValidationRequest validationRequest;
+    private ValidationRequest request;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -109,17 +109,17 @@ public class ValidationRequestFile implements Serializable {
         this.type = type;
     }
 
-    public ValidationRequest getValidationRequest() {
-        return this.validationRequest;
+    public ValidationRequest getRequest() {
+        return this.request;
     }
 
-    public ValidationRequestFile validationRequest(ValidationRequest validationRequest) {
-        this.setValidationRequest(validationRequest);
+    public ValidationRequestFile request(ValidationRequest validationRequest) {
+        this.setRequest(validationRequest);
         return this;
     }
 
-    public void setValidationRequest(ValidationRequest validationRequest) {
-        this.validationRequest = validationRequest;
+    public void setRequest(ValidationRequest validationRequest) {
+        this.request = validationRequest;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

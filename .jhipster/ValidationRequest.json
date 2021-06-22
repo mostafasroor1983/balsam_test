@@ -29,6 +29,7 @@
       "otherEntityName": "user",
       "otherEntityRelationshipName": "validationRequest",
       "relationshipName": "user",
+      "otherEntityField": "login",
       "ownerSide": true
     },
     {
@@ -36,6 +37,7 @@
       "otherEntityName": "user",
       "otherEntityRelationshipName": "validationRequest",
       "relationshipName": "createdBy",
+      "otherEntityField": "login",
       "ownerSide": true
     },
     {
@@ -43,12 +45,13 @@
       "otherEntityName": "user",
       "otherEntityRelationshipName": "validationRequest",
       "relationshipName": "acceptedBy",
+      "otherEntityField": "login",
       "ownerSide": true
     },
     {
       "relationshipType": "one-to-many",
       "otherEntityName": "validationRequestFile",
-      "otherEntityRelationshipName": "validationRequest",
+      "otherEntityRelationshipName": "request",
       "relationshipName": "files"
     }
   ],

@@ -54,13 +54,13 @@
           <th scope="col" jhiSortBy="printingDateTime">
             <span jhiTranslate="balsamTestApp.membership.printingDateTime">Printing Date Time</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="servicePackage.id">
+          <th scope="col" jhiSortBy="servicePackage.name">
             <span jhiTranslate="balsamTestApp.membership.servicePackage">Service Package</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="corporate.id">
+          <th scope="col" jhiSortBy="corporate.name">
             <span jhiTranslate="balsamTestApp.membership.corporate">Corporate</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="user.id">
+          <th scope="col" jhiSortBy="user.login">
             <span jhiTranslate="balsamTestApp.membership.user">User</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
@@ -80,16 +80,16 @@
           <td>{{ membership.printingDateTime | formatMediumDatetime }}</td>
           <td>
             <div *ngIf="membership.servicePackage">
-              <a [routerLink]="['/service-package', membership.servicePackage?.id, 'view']">{{ membership.servicePackage?.id }}</a>
+              <a [routerLink]="['/service-package', membership.servicePackage?.id, 'view']">{{ membership.servicePackage?.name }}</a>
             </div>
           </td>
           <td>
             <div *ngIf="membership.corporate">
-              <a [routerLink]="['/corporate', membership.corporate?.id, 'view']">{{ membership.corporate?.id }}</a>
+              <a [routerLink]="['/corporate', membership.corporate?.id, 'view']">{{ membership.corporate?.name }}</a>
             </div>
           </td>
           <td>
-            {{ membership.user?.id }}
+            {{ membership.user?.login }}
           </td>
           <td class="text-right">
             <div class="btn-group">

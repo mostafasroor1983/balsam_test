@@ -40,10 +40,7 @@ export class CorporateUpdateComponent implements OnInit {
         ),
       ],
     ],
-    website: [
-      null,
-      [Validators.pattern('^(https?|ftp|file):\\\\/\\\\/[-a-zA-Z0-9+&amp;@#\\\\/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#\\\\/%=~_|]$')],
-    ],
+    website: [null, [Validators.pattern('^(http:\\/\\/|https:\\/\\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$')]],
     country: [],
   });
 

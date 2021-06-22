@@ -142,7 +142,7 @@
               "
               *ngFor="let servicePackageOption of servicePackagesCollection; trackBy: trackServicePackageById"
             >
-              {{ servicePackageOption.id }}
+              {{ servicePackageOption.name }}
             </option>
           </select>
         </div>
@@ -155,7 +155,7 @@
               [ngValue]="corporateOption.id === editForm.get('corporate')!.value?.id ? editForm.get('corporate')!.value : corporateOption"
               *ngFor="let corporateOption of corporatesCollection; trackBy: trackCorporateById"
             >
-              {{ corporateOption.id }}
+              {{ corporateOption.name }}
             </option>
           </select>
         </div>
@@ -168,7 +168,7 @@
               [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
               *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
             >
-              {{ userOption.id }}
+              {{ userOption.login }}
             </option>
           </select>
         </div>

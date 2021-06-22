@@ -9,12 +9,13 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { CountryMapper.class, ServicePackageTypeMapper.class })
 public interface ServicePackageMapper extends EntityMapper<ServicePackageDTO, ServicePackage> {
-    @Mapping(target = "country", source = "country", qualifiedByName = "id")
-    @Mapping(target = "packageType", source = "packageType", qualifiedByName = "id")
+    @Mapping(target = "country", source = "country", qualifiedByName = "name")
+    @Mapping(target = "packageType", source = "packageType", qualifiedByName = "name")
     ServicePackageDTO toDto(ServicePackage s);
 
-    @Named("id")
+    @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    ServicePackageDTO toDtoId(ServicePackage servicePackage);
+    @Mapping(target = "name", source = "name")
+    ServicePackageDTO toDtoName(ServicePackage servicePackage);
 }

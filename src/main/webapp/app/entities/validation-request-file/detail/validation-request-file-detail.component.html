@@ -39,12 +39,10 @@
             validationRequestFile.type
           }}</span>
         </dd>
-        <dt><span jhiTranslate="balsamTestApp.validationRequestFile.validationRequest">Validation Request</span></dt>
+        <dt><span jhiTranslate="balsamTestApp.validationRequestFile.request">Request</span></dt>
         <dd>
-          <div *ngIf="validationRequestFile.validationRequest">
-            <a [routerLink]="['/validation-request', validationRequestFile.validationRequest?.id, 'view']">{{
-              validationRequestFile.validationRequest?.id
-            }}</a>
+          <div *ngIf="validationRequestFile.request">
+            <a [routerLink]="['/validation-request', validationRequestFile.request?.id, 'view']">{{ validationRequestFile.request?.id }}</a>
           </div>
         </dd>
       </dl>

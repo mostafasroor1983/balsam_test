@@ -45,18 +45,18 @@
         <dt><span jhiTranslate="balsamTestApp.membership.servicePackage">Service Package</span></dt>
         <dd>
           <div *ngIf="membership.servicePackage">
-            <a [routerLink]="['/service-package', membership.servicePackage?.id, 'view']">{{ membership.servicePackage?.id }}</a>
+            <a [routerLink]="['/service-package', membership.servicePackage?.id, 'view']">{{ membership.servicePackage?.name }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="balsamTestApp.membership.corporate">Corporate</span></dt>
         <dd>
           <div *ngIf="membership.corporate">
-            <a [routerLink]="['/corporate', membership.corporate?.id, 'view']">{{ membership.corporate?.id }}</a>
+            <a [routerLink]="['/corporate', membership.corporate?.id, 'view']">{{ membership.corporate?.name }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="balsamTestApp.membership.user">User</span></dt>
         <dd>
-          <span>{{ membership.user?.id }}</span>
+          <span>{{ membership.user?.login }}</span>
         </dd>
       </dl>
 

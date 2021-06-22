@@ -18,7 +18,7 @@ entity Corporate {
     employeeSize  EmployeeSize required,
     clientSize ClientSize required,
     email String pattern(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/),
-    website String pattern(/^(https?|ftp|file):\\/\\/[-a-zA-Z0-9+&@#\\/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#\\/%=~_|]$/)
+    website String pattern(/^(http:\/\/|https:\/\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$/)
 }
 
 enum MemberType{
@@ -105,20 +105,20 @@ entity ServicePackage {
 
 //Relations
 relationship OneToOne {
-   ServicePackage{country} to Country,
-   Membership{servicePackage} to ServicePackage,
-   Membership{corporate} to Corporate,
-   Membership{user} to User,
-   ValidationRequest{user} to User,
-   ValidationRequest{createdBy} to User,
-   ValidationRequest{acceptedBy} to User
+   ServicePackage{country(name)} to Country,
+   Membership{servicePackage(name)} to ServicePackage,
+   Membership{corporate(name)} to Corporate,
+   Membership{user(login)} to User,
+   ValidationRequest{user(login)} to User,
+   ValidationRequest{createdBy(login)} to User,
+   ValidationRequest{acceptedBy(login)} to User
 }
 
 relationship OneToMany {
-	Country{cities} to City{country},
-    Country{corporates} to Corporate{country},
-    ServicePackageType{packages} to ServicePackage{packageType},
-    ValidationRequest{files} to ValidationRequestFile
+	Country{cities} to City{country(name)},
+    Country{corporates} to Corporate{country(name)},
+    ServicePackageType{packages} to ServicePackage{packageType(name)},
+    ValidationRequest{files} to ValidationRequestFile{request}
 }
 
 //Options

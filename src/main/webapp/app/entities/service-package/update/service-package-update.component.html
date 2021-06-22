@@ -72,7 +72,7 @@
               [ngValue]="countryOption.id === editForm.get('country')!.value?.id ? editForm.get('country')!.value : countryOption"
               *ngFor="let countryOption of countriesCollection; trackBy: trackCountryById"
             >
-              {{ countryOption.id }}
+              {{ countryOption.name }}
             </option>
           </select>
         </div>
@@ -91,7 +91,7 @@
               "
               *ngFor="let servicePackageTypeOption of servicePackageTypesSharedCollection; trackBy: trackServicePackageTypeById"
             >
-              {{ servicePackageTypeOption.id }}
+              {{ servicePackageTypeOption.name }}
             </option>
           </select>
         </div>

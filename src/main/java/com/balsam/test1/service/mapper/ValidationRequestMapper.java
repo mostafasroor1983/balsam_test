@@ -9,9 +9,9 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { UserMapper.class })
 public interface ValidationRequestMapper extends EntityMapper<ValidationRequestDTO, ValidationRequest> {
-    @Mapping(target = "user", source = "user", qualifiedByName = "id")
-    @Mapping(target = "createdBy", source = "createdBy", qualifiedByName = "id")
-    @Mapping(target = "acceptedBy", source = "acceptedBy", qualifiedByName = "id")
+    @Mapping(target = "user", source = "user", qualifiedByName = "login")
+    @Mapping(target = "createdBy", source = "createdBy", qualifiedByName = "login")
+    @Mapping(target = "acceptedBy", source = "acceptedBy", qualifiedByName = "login")
     ValidationRequestDTO toDto(ValidationRequest s);
 
     @Named("id")

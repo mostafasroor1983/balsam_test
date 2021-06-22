@@ -29,13 +29,13 @@
         <dt><span jhiTranslate="balsamTestApp.servicePackage.country">Country</span></dt>
         <dd>
           <div *ngIf="servicePackage.country">
-            <a [routerLink]="['/country', servicePackage.country?.id, 'view']">{{ servicePackage.country?.id }}</a>
+            <a [routerLink]="['/country', servicePackage.country?.id, 'view']">{{ servicePackage.country?.name }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="balsamTestApp.servicePackage.packageType">Package Type</span></dt>
         <dd>
           <div *ngIf="servicePackage.packageType">
-            <a [routerLink]="['/service-package-type', servicePackage.packageType?.id, 'view']">{{ servicePackage.packageType?.id }}</a>
+            <a [routerLink]="['/service-package-type', servicePackage.packageType?.id, 'view']">{{ servicePackage.packageType?.name }}</a>
           </div>
         </dd>
       </dl>

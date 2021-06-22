@@ -79,25 +79,12 @@
         </div>
 
         <div class="form-group">
-          <label
-            class="form-control-label"
-            jhiTranslate="balsamTestApp.validationRequestFile.validationRequest"
-            for="field_validationRequest"
-            >Validation Request</label
-          >
-          <select
-            class="form-control"
-            id="field_validationRequest"
-            data-cy="validationRequest"
-            name="validationRequest"
-            formControlName="validationRequest"
-          >
+          <label class="form-control-label" jhiTranslate="balsamTestApp.validationRequestFile.request" for="field_request">Request</label>
+          <select class="form-control" id="field_request" data-cy="request" name="request" formControlName="request">
             <option [ngValue]="null"></option>
             <option
               [ngValue]="
-                validationRequestOption.id === editForm.get('validationRequest')!.value?.id
-                  ? editForm.get('validationRequest')!.value
-                  : validationRequestOption
+                validationRequestOption.id === editForm.get('request')!.value?.id ? editForm.get('request')!.value : validationRequestOption
               "
               *ngFor="let validationRequestOption of validationRequestsSharedCollection; trackBy: trackValidationRequestById"
             >

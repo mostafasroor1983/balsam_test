@@ -25,7 +25,7 @@
         <dt><span jhiTranslate="balsamTestApp.city.country">Country</span></dt>
         <dd>
           <div *ngIf="city.country">
-            <a [routerLink]="['/country', city.country?.id, 'view']">{{ city.country?.id }}</a>
+            <a [routerLink]="['/country', city.country?.id, 'view']">{{ city.country?.name }}</a>
           </div>
         </dd>
       </dl>

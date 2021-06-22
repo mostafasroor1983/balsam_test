@@ -42,9 +42,8 @@
           <th scope="col" jhiSortBy="type">
             <span jhiTranslate="balsamTestApp.validationRequestFile.type">Type</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="validationRequest.id">
-            <span jhiTranslate="balsamTestApp.validationRequestFile.validationRequest">Validation Request</span>
-            <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="request.id">
+            <span jhiTranslate="balsamTestApp.validationRequestFile.request">Request</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -71,9 +70,9 @@
             {{ validationRequestFile.type }}
           </td>
           <td>
-            <div *ngIf="validationRequestFile.validationRequest">
-              <a [routerLink]="['/validation-request', validationRequestFile.validationRequest?.id, 'view']">{{
-                validationRequestFile.validationRequest?.id
+            <div *ngIf="validationRequestFile.request">
+              <a [routerLink]="['/validation-request', validationRequestFile.request?.id, 'view']">{{
+                validationRequestFile.request?.id
               }}</a>
             </div>
           </td>

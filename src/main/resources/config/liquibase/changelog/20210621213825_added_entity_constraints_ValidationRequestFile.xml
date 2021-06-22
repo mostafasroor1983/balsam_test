@@ -8,9 +8,9 @@
     -->
     <changeSet id="20210621213825-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="validation_request_id"
+        <addForeignKeyConstraint baseColumnNames="request_id"
                                  baseTableName="validation_request_file"
-                                 constraintName="fk_validation_request_file__validation_request_id"
+                                 constraintName="fk_validation_request_file__request_id"
                                  referencedColumnNames="id"
                                  referencedTableName="validation_request"/>
     </changeSet>

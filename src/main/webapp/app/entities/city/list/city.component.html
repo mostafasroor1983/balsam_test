@@ -35,7 +35,7 @@
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="name"><span jhiTranslate="balsamTestApp.city.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="code"><span jhiTranslate="balsamTestApp.city.code">Code</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="country.id">
+          <th scope="col" jhiSortBy="country.name">
             <span jhiTranslate="balsamTestApp.city.country">Country</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
@@ -50,7 +50,7 @@
           <td>{{ city.code }}</td>
           <td>
             <div *ngIf="city.country">
-              <a [routerLink]="['/country', city.country?.id, 'view']">{{ city.country?.id }}</a>
+              <a [routerLink]="['/country', city.country?.id, 'view']">{{ city.country?.name }}</a>
             </div>
           </td>
           <td class="text-right">

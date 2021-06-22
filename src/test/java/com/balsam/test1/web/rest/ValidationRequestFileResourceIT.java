@@ -356,21 +356,21 @@ class ValidationRequestFileResourceIT {
 
     @Test
     @Transactional
-    void getAllValidationRequestFilesByValidationRequestIsEqualToSomething() throws Exception {
+    void getAllValidationRequestFilesByRequestIsEqualToSomething() throws Exception {
         // Initialize the database
         validationRequestFileRepository.saveAndFlush(validationRequestFile);
-        ValidationRequest validationRequest = ValidationRequestResourceIT.createEntity(em);
-        em.persist(validationRequest);
+        ValidationRequest request = ValidationRequestResourceIT.createEntity(em);
+        em.persist(request);
         em.flush();
-        validationRequestFile.setValidationRequest(validationRequest);
+        validationRequestFile.setRequest(request);
         validationRequestFileRepository.saveAndFlush(validationRequestFile);
-        Long validationRequestId = validationRequest.getId();
+        Long requestId = request.getId();
 
-        // Get all the validationRequestFileList where validationRequest equals to validationRequestId
-        defaultValidationRequestFileShouldBeFound("validationRequestId.equals=" + validationRequestId);
+        // Get all the validationRequestFileList where request equals to requestId
+        defaultValidationRequestFileShouldBeFound("requestId.equals=" + requestId);
 
-        // Get all the validationRequestFileList where validationRequest equals to (validationRequestId + 1)
-        defaultValidationRequestFileShouldNotBeFound("validationRequestId.equals=" + (validationRequestId + 1));
+        // Get all the validationRequestFileList where request equals to (requestId + 1)
+        defaultValidationRequestFileShouldNotBeFound("requestId.equals=" + (requestId + 1));
     }
 
     /**

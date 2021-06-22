@@ -21,7 +21,7 @@
       "name": "Name",
       "file": "File",
       "type": "Type",
-      "validationRequest": "Validation Request"
+      "request": "Request"
     }
   }
 }
